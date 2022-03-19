@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="./assets/style.css">
+
+    <!--Title-->
+    <title>Javascript Quiz</title>
+
+</head>
+
+<body>
+    <!--Header Container-->
+    <header class="container-fluid mb-5">
+        <!-- scores link and time -->
+        <div class="row">
+            <!-- View highscores -->
+            <div class="col-6">
+                <!--View Highscores-->
+                <button id="view-scores" type="button" class="btn btn-secondary d-inline-block mt-1">View High Scores</button>
+            </div>
+            <!-- Timer -->
+            <div class="col-6">
+                <p class="d-flex justify-content-end time">Time:75s</p>
+            </div>
+        </div>
+    </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Container for Intro, Questions, Answers -->
+            <div class="container">
+                <!-- Section for H1 and Intro // Hide upon Start-->
+                <section id="intro">
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-6">
+                            <h1 class="d-flex justify-content-center text-center">Javascript Coding Quiz Challenge!</h1>
+                            <p class="d-flex justify-content-center text-center">Test your Javascript knoweledge with these up to date code questions. Every answer that is incorrect will penalize your score and subtract from your time by 10 seconds!</p>
+                            <button id="start" type="button" class="btn btn-success mx-auto d-block">Start Quiz</button></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+    
+    
+</body>
+</html>
