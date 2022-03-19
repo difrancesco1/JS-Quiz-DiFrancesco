@@ -14,3 +14,7 @@ ul.nobullets {
     outline: none;
     background-color: #28a745;
 }
+
+ul {
+    list-style-type: none;
+  }
