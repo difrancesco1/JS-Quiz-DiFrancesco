@@ -1,0 +1,16 @@
+
+/* No List Style (For Questions/Answers)*/
+ul.nobullets {
+    list-style-type: none;
+    }
+
+/* Answer button styling */
+.ansBtn,
+.ansBtn:hover,
+.ansBtn:active,
+.ansBtn:focus,
+.ansBtn:active:focus {
+    box-shadow: none;
+    outline: none;
+    background-color: #28a745;
+}
