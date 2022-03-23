@@ -1,20 +1,34 @@
 
 /* No List Style (For Questions/Answers)*/
-ul.nobullets {
+ul {
     list-style-type: none;
     }
 
-/* Answer button styling */
 .ansBtn,
-.ansBtn:hover,
-.ansBtn:active,
-.ansBtn:focus,
-.ansBtn:active:focus {
+.ansBtn:active
+ {
     box-shadow: none;
     outline: none;
-    background-color: #28a745;
 }
 
-ul {
-    list-style-type: none;
-  }
+/* hide sections until they are shown via the click events */
+#questions,
+#highscores,
+#correctIncorrect,
+#final
+{
+    display: none;  
+  } 
+
+.questions {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#question {
+    margin-bottom: 20px;
+}
+
+body {
+    background-color: antiquewhite;
+}

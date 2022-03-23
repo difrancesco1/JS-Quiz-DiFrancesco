@@ -4,7 +4,7 @@ const questionsEl = document.querySelector("#questions");
 let questionEl = document.querySelector("#question");
 
 let questionCount = 0;
-const trueFlaseEl = document.querySelector("#yaynay");
+const trueFlaseEl = document.querySelector("#correctIncorrect");
 
 const endQuizEl = document.querySelector("#final");
 const hsEl = document.querySelector("#highscores");
@@ -183,7 +183,8 @@ ansBtn.forEach(item => {
 backbtn.addEventListener("click", function () { //Return to main page and reset timer display
     hsEl.style.display = "none";
     introEl.style.display = "block";
-    timeQuiz.textContent = `Time: 120s`; //Fix ...
+    timeLeft = 120;
+    timeEl.textContent = `Time:${timeLeft}s`;
 });
 
 submitBtn.addEventListener("click", newScore); //New Score
