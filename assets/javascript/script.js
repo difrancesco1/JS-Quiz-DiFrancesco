@@ -57,3 +57,88 @@ const questions = [ //Question Arrays
         correctAnswer: "0"
     }
 ];
+
+//All fucntions needed for quiz (Starting Quiz, Setting Questions, Timer, Answer Verification, and Highscore features)
+
+function quizBegin() {
+    introEl.style.display = "none";
+    questionsEl.style.display = "block";
+    questionCount = 0;
+
+    setTime();
+    questionOrg(questionCount);
+}
+
+function questionOrg(id) { //Organizes Questions 
+    if (id < questions.length) { 
+        questionEl.textContent = questions[id].question;
+        ans1Btn.textContent = questions[id].answers[0];
+        ans2Btn.textContent = questions[id].answers[1];
+        ans3Btn.textContent = questions[id].answers[2];
+        ans4Btn.textContent = questions[id].answers[3];
+    }
+}
+
+function setTime() {
+    let timerInterval = setInterval(function () {
+        timeRemaining--;
+        timeQuiz.textContent = `Time:${timeRemaining}s`;
+
+        if (timeRemaining === 0 || questionCount === questions.length) {
+            clearInterval(timerInterval);
+
+            questionsEl.style.display = "none";
+            endQuizEl.style.display = "block";
+            youScore.textContent = timeRemaining;
+        }
+    }, 1000); //Need this else it think seconds = ms 
+}
+
+
+
+// function to check answer and then move to next question
+function verifyAnswerFunction(event) {
+    event.preventDefault();
+
+    trueFlaseEl.style.display = "block";
+    let response = document.createElement("p"); //need this to be a paragraph
+    trueFlaseEl.appendChild(response);
+
+    setTimeout(function () { //deletes the response after 2.5 seconds
+        response.style.display = 'none';
+    }, 2500);
+
+    //Function that checks the response and determines whether its the correct answer or not
+    if (questions[questionCount].correctAnswer === event.target.value) {
+        response.textContent = "Correct Answer";
+    } else if (questions[questionCount].correctAnswer !== event.target.value) {
+        timeRemaining = timeRemaining - 15;
+        response.textContent = "Incorrect Answer";
+    }
+
+    // increment so the questions index is increased
+    if (questionCount < questions.length) {
+        questionCount++;
+    }
+    // call questionOrg to bring in next question when any ansBtn is clicked
+    questionOrg(questionCount);
+}
+
+
+// EventListeners
+startBtn.addEventListener("click", quizBegin);
+
+// Check answers loop
+ansBtn.forEach(item => {
+    item.addEventListener('click', verifyAnswerFunction);
+});
+
+
+
+// Go Back Button
+backbtn.addEventListener("click", function () {
+    hsEl.style.display = "none";
+    introEl.style.display = "block";
+    timeRemaining = 120;
+    timeQuiz.textContent = `Time:${timeRemaining}s`;
+});
