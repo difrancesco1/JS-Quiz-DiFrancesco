@@ -8,7 +8,7 @@ const trueFlaseEl = document.querySelector("#yaynay");
 
 const endQuizEl = document.querySelector("#final");
 const hsEl = document.querySelector("#highscores");
-let nameScore = document.querySelector("#initials");
+let nameScore = document.querySelector("#username");
 
 let hsList2 = document.querySelector("#score-list");
 let hsList = [];
@@ -124,21 +124,79 @@ function verifyAnswerFunction(event) {
     questionOrg(questionCount);
 }
 
+function newScore(event) {
+    event.preventDefault();
+
+    endQuizEl.style.display = "none";
+    hsEl.style.display = "block";
+
+    let nameCap = nameScore.value.charAt(0).toUpperCase() + nameScore.value.slice(1); //Uppercase first letter!
+    hsList.push({ username: nameCap, score: timeRemaining });
+
+    hsList = hsList.sort((a, b) => { //Sorting scores based on their value
+        if (a.score < b.score) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+    
+    hsList2.innerHTML="";
+    for (let i = 0; i < hsList.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = `${hsList[i].username}: ${hsList[i].score}`;
+        hsList2.append(li);
+    }
+
+    //Add Score inputs to our local storage/display them
+    storehs();
+    displayhs();
+}
+
+function storehs() {
+    localStorage.setItem("hsList", JSON.stringify(hsList));
+}
+
+function displayhs() {
+    //pull scores from storage
+    let storedhslist = JSON.parse(localStorage.getItem("hsList"));
+
+    //upon recieving any new scores from local storage, display them
+    if (storedhslist !== null) {
+        hsList = storedhslist;
+    }
+}
+
+//clear score list
+function clearhs() {
+    localStorage.clear();
+    hsList2.innerHTML="";
+}
 
 // EventListeners
-startBtn.addEventListener("click", quizBegin);
+startBtn.addEventListener("click", quizBegin); //Quiz Begin
 
-// Check answers loop
 ansBtn.forEach(item => {
-    item.addEventListener('click', verifyAnswerFunction);
+    item.addEventListener('click', verifyAnswerFunction); //Answer Verification
 });
 
-
-
-// Go Back Button
-backbtn.addEventListener("click", function () {
+backbtn.addEventListener("click", function () { //Return to main page and reset timer display
     hsEl.style.display = "none";
     introEl.style.display = "block";
-    timeRemaining = 120;
-    timeQuiz.textContent = `Time:${timeRemaining}s`;
+    timeQuiz.textContent = `Time: 120s`; //Fix ...
 });
+
+submitBtn.addEventListener("click", newScore); //New Score
+
+
+vscoresBtn.addEventListener("click", function () { //View HS
+    if (hsEl.style.display === "none") {
+        hsEl.style.display = "block";
+    } else if (hsEl.style.display === "block") {
+        hsEl.style.display = "none";
+    } else {
+        return alert("No scores recorded, take the quiz to see where you land!");
+    }
+});
+
+eraseBtn.addEventListener("click", clearhs); //Clear HighScores
