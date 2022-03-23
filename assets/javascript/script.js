@@ -55,6 +55,11 @@ const questions = [ //Question Arrays
         question: "How do you write 'Hello World' in an alert box?",
         answers: ['alert("Hello World");', 'alertBox("Hello World");', 'msgBox("Hello World");', 'msg("Hello World");'],
         correctAnswer: "0"
+    },
+    {
+        question: "Which event occurs when the user clicks on an HTML element?",
+        answers: ['onchange', 'onmouseclick', 'onclick ', 'onmouseover'],
+        correctAnswer: "2"
     }
 ];
 
@@ -183,8 +188,8 @@ ansBtn.forEach(item => {
 backbtn.addEventListener("click", function () { //Return to main page and reset timer display
     hsEl.style.display = "none";
     introEl.style.display = "block";
-    timeLeft = 120;
-    timeEl.textContent = `Time:${timeLeft}s`;
+    timeRemaining = 120;
+    timeQuiz.textContent = `Time:${timeRemaining}s`;
 });
 
 submitBtn.addEventListener("click", newScore); //New Score
