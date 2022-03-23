@@ -1,6 +1,6 @@
 # Javascript Quiz
 
-#Purpose
+# Purpose
 
 The purpose of this quiz is the test the knowledge of basic javascript functions and concepts for the people who take it
 
